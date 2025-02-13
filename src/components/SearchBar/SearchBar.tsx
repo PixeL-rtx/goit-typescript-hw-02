@@ -1,17 +1,18 @@
 import toast from "react-hot-toast";
 import { Field, Form, Formik } from "formik";
 import css from "./SearchBar.module.css";
+import React from "react";
 
 interface values {
   query: string;
 }
-interface SearchBar {
+interface SearchBarProps {
   onSubmit: (query: string) => void;
 }
 
-const initialValues = { query: "" };
+const initialValues: values = { query: "" };
 
-const SearchBar: React.FC<SearchBar> = ({ onSubmit }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
   return (
     <Formik
       initialValues={initialValues}

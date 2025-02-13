@@ -1,5 +1,7 @@
+import React from "react";
 import { PhotoUrl } from "../../types/interfaces";
 import css from "./ImageCard.module.css";
+
 interface ImageCard {
   alt_description: string;
   urls: PhotoUrl;

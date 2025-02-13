@@ -5,12 +5,14 @@ import fetchGallery from "./service/api";
 
 import toast, { Toaster } from "react-hot-toast";
 import { Photo, fetchGalleryRes } from "./types/interfaces";
+
 import SearchBar from "./components/SearchBar/SearchBar";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
+import React from "react";
 
 function App() {
   const [page, setPage] = useState<number>(1);
@@ -20,20 +22,18 @@ function App() {
 
   const [totalPages, setTotalPages] = useState<number>(0);
   const [queryValue, setQueryValue] = useState<string>("");
-  const [modalIsOpen, setIsOpen] = useState<boolen>(false);
+  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
   const [modalImage, setModalImage] = useState<string>("");
   const [altDescription, setAltDescription] = useState<string>("");
 
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!queryValue) return;
+    if (queryValue === "") return;
 
     const handleSearch = async () => {
-      setLoading(true);
-
-      setError(false);
       try {
+        setError(false);
         setLoading(true);
         const data: fetchGalleryRes = await fetchGallery(queryValue, page);
 
